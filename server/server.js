@@ -15,8 +15,21 @@ app.use(bodyParser.urlencoded({ extended: false })); // parse the incoming reque
  * PUT - Update    ==> Update a note
  * DELETE - Delete ==> Delete a note
  */
-app.get
-app.post
-app.put
-app.delete
 
+// Temporary data store even can be used as a database
+let notes = [];
+
+// Create POST API to be able to create a new note
+app.post('/notes', (req, res) =>{
+    const body = req.body;
+    console.log(`BODY: ${body}`);
+    notes.push(body.title);
+
+    res.send(true);
+    //res.status(201).send('Note is created');
+}); // ("/notes", callBack function(req, res) => { });
+
+const port = 3000;
+app.listen(port, () => {
+    console.log(`Server has started on port ${port}...`);
+});
