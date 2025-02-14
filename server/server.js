@@ -22,12 +22,20 @@ let notes = [];
 // Create POST API to be able to create a new note
 app.post('/notes', (req, res) =>{
     const body = req.body;
-    console.log(`BODY: ${body}`);
+    console.log("BODY:", body);
     notes.push(body.title);
-
+    console.log("NOTES:", notes);
     res.send(true);
     //res.status(201).send('Note is created');
 }); // ("/notes", callBack function(req, res) => { });
+
+// create GET API to be able to get all notes
+app.get('/notes', (req, res) => {
+    console.log("GET ALL NOTES");
+    res.send(notes);
+
+    
+});
 
 const port = 3000;
 app.listen(port, () => {
