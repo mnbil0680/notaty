@@ -2,7 +2,7 @@ const mongoose = require('mongoose'); // Import mongoose library to be able to c
 class Database{
 
     constructor(){
-        this.Url = 'mongodb://127.0.0.1:27017/notes'; // Database URL
+        this.Url = 'mongodb://127.0.0.1:27017/notaty'; // Database URL
         }
         connect(){
             mongoose.connect(this.Url, {}).then(()=>{
