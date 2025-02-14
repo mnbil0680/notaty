@@ -3,11 +3,13 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const app = express();
+const Database = require('./Database');
+const db = new Database();
 app.use(cors()); // it is very important to make API calls from different domain
 app.use(bodyParser.json()); // parse the incoming request body
 app.use(bodyParser.urlencoded({ extended: false })); // parse the incoming request body
 
-con
+
 
 // Most common API routes
 /**
@@ -42,4 +44,5 @@ app.get('/notes', (req, res) => {
 const port = 3000;
 app.listen(port, () => {
     console.log(`Server has started on port ${port}...`);
+    db.connect();
 });
