@@ -52,6 +52,17 @@ class Database {
             });
         });
     }
+
+    updateNote(note) {
+        return new Promise((resolve, reject) => {
+            Note.findByIdAndUpdate(note["-id"], note).then(data => {
+            console.log("Note updated successfully:", data);
+            resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
 }
 
 module.exports = Database; // Export the Database class to be able to use it in other files
