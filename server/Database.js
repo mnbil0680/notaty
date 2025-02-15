@@ -55,7 +55,7 @@ class Database {
 
     updateNote(note) {
         return new Promise((resolve, reject) => {
-            Note.findByIdAndUpdate(note["-id"], note).then(data => {
+            Note.findByIdAndUpdate(note["_id"], note).then(data => {
             console.log("Note updated successfully:", data);
             resolve(data);
             }).catch(err => {
