@@ -43,7 +43,7 @@ class Database {
             Note.findById(id).then(data => {
                 if (!data) {
                     console.log(`Note not found: ${id}`);
-                    return reject(`Note not found: ${id}`);
+                    reject(`Note not found: ${id}`);
                 }
                 console.log("Note retrieved successfully:", data);
                 resolve(data);
@@ -55,7 +55,7 @@ class Database {
 
     updateNote(note) {
         return new Promise((resolve, reject) => {
-            Note.findByIdAndUpdate(note["_id"], note)
+            Note.findByIdAndUpdate(note["_id"], note, {new: true})
             .then(data => {
             console.log("Note updated successfully:", data);
             resolve(data);
