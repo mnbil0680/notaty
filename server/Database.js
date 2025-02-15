@@ -65,6 +65,38 @@ class Database {
             });
         });
     }
+
+    deleteNoteById(id) {
+        return new Promise((resolve, reject) => {
+            Note.findByIdAndDelete(id).then(data => {
+                if (!data) {
+                    console.log(`Note not found: ${id}`);
+                    reject(`Note not found: ${id}`);
+                }
+                console.log("Note deleted successfully:", data);
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
+
+    getNotesByTitle(title) {
+        return new Promise((resolve, reject) => {
+            const query= {title: {$regex: new RegExp(title, 'i')}};
+            Note.find(query)
+            .then(data => {
+                if (data.length === 0) {
+                    console.log(`Note not found: ${title}`);
+                    reject(`Note not found: ${title}`);
+                }
+                console.log("Note retrieved successfully:", data);
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
 }
 
 module.exports = Database; // Export the Database class to be able to use it in other files

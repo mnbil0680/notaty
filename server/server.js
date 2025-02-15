@@ -27,13 +27,22 @@ app.post('/notes', (req, res) =>{
 
 // create GET API to be able to get all notes
 app.get('/notes', (req, res) => {
-    db.getNotes().then(data =>{
-        res.send(data);
-    }).catch(err =>{
-        res.status(500).send(err);
-    });
-
-    
+    // title for search
+    const {title } = req.query;
+    if(title){
+        db.getNotesByTitle(title)
+        .then(data =>{
+            res.send(data);
+        }).catch(err =>{
+            res.status(500).send(err);
+        });
+    }else{
+        db.getNotes().then(data =>{
+            res.send(data);
+        }).catch(err =>{
+            res.status(500).send(err);
+        });
+    }
 });
 
 app.get('/notes/:id', (req, res) => {
@@ -53,6 +62,19 @@ app.put('/notes', (req, res) => {
     .then(data =>{
         if(!data){
             res.status(404).send(`Note not found: ${req.body["-id"]}`);
+        }
+        res.send(data);
+    }).catch(err =>{
+        res.status(500).send(err);
+    });
+});
+
+app.delete('/notes/:id', (req, res) => {
+    const { id } = req.params;
+    db.deleteNoteById(id)
+    .then(data =>{
+        if(!data){
+            res.status(404).send(`Note not found: ${id}`);
         }
         res.send(data);
     }).catch(err =>{
