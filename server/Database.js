@@ -15,5 +15,6 @@ class Database{
         }
     }
 
+    
 
 module.exports = Database; // Export the Database class to be able to use it in other files
