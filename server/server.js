@@ -11,14 +11,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-let notes = []; //empty array to store notes
+
 // Create POST API to be able to create a new note
 app.post('/notes', (req, res) =>{
     const body = req.body;
     console.log("BODY:", body);
-    notes.push(body.title);
-    console.log("NOTES:", notes);
-    res.send(true);
+    db.addNote(body).then(data =>{
+        res.send(data);
+    }).catch(err =>{
+        res.status(500).send(err);
+    });
+
     
 }); 
 
