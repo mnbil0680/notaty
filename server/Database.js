@@ -11,7 +11,7 @@ class Database {
             console.log("Database Connected Successfully");
         }).catch((err) => {
             console.log("Error in Database Connection", err);
-        }) // Connect to the database
+        }); // Connect to the database
     }
 
     addNote(note) {
@@ -24,10 +24,19 @@ class Database {
                 resolve(doc);
             }).catch(err => {
                 reject(err);
-            })
+            });
+        });
+    }
+
+    getNotes() {
+        return new Promise((resolve, reject) => {
+            Note.find().then(data => {
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
         });
     }
 }
-
 
 module.exports = Database; // Export the Database class to be able to use it in other files

@@ -27,8 +27,11 @@ app.post('/notes', (req, res) =>{
 
 // create GET API to be able to get all notes
 app.get('/notes', (req, res) => {
-    console.log("GET ALL NOTES");
-    res.send(notes);
+    db.getNotes().then(data =>{
+        res.send(data);
+    }).catch(err =>{
+        res.status(500).send(err);
+    });
 
     
 });
