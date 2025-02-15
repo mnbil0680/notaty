@@ -2,12 +2,10 @@ const mongoose = require('mongoose'); // Import mongoose library to be able to c
 class Database{
 
     constructor(){
-        this.Url = 'mongodb://localhost:7000/notaty'; // Database URL
+        this.Url = 'mongodb://127.0.0.1:27017/notes'; // Database URL
         }
-        connect(){
-            mongoose.connect(this.Url, {
-                useNewUrlParser: true,
-                useUnifiedTopology: true}).then(()=>{
+        async connect(){
+            await mongoose.connect(this.Url, {}).then(()=>{
                 console.log("Database Connected Successfully");
             }).catch((err)=>{
                 console.log("Error in Database Connection", err);
@@ -15,6 +13,5 @@ class Database{
         }
     }
 
-    
 
 module.exports = Database; // Export the Database class to be able to use it in other files

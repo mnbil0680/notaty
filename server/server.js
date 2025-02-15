@@ -34,4 +34,4 @@ const port = 3000;
 app.listen(port, () => {
     console.log(`Server has started on port ${port}...`);
     db.connect();
-});
+}); // Start the server on port 3000
