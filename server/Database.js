@@ -55,6 +55,7 @@ class Database {
 
     updateNote(note) {
         return new Promise((resolve, reject) => {
+            note["updatedDate"] = new Date();
             Note.findByIdAndUpdate(note["_id"], note, {new: true})
             .then(data => {
             console.log("Note updated successfully:", data);
