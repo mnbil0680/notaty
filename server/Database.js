@@ -37,6 +37,21 @@ class Database {
             });
         });
     }
+
+    getNoteById(id) {
+        return new Promise((resolve, reject) => {
+            Note.findById(id).then(data => {
+                if (!data) {
+                    console.log(`Note not found: ${id}`);
+                    return reject(`Note not found: ${id}`);
+                }
+                console.log("Note retrieved successfully:", data);
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            });
+        });
+    }
 }
 
 module.exports = Database; // Export the Database class to be able to use it in other files
