@@ -52,7 +52,7 @@ app.put('/notes', (req, res) => {
     db.updateNote(req.body)
     .then(data =>{
         if(!data){
-            return res.status(404).send(`Note not found: ${req.body["-id"]}`);
+            res.status(404).send(`Note not found: ${req.body["-id"]}`);
         }
         res.send(data);
     }).catch(err =>{
