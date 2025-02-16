@@ -27,16 +27,14 @@ function updateNotesTable(noteTitle){
             margin: auto;">
                 <img 
                 src="./images/edit.png" alt="edit"
-                style="width: 22px; height: 22px;"
-                onclick="editNote(${note["id"]})">
+                style="width: 22px; height: 22px;">
             </a>
             <a href="#"
             style= "text-decoration: none;
             margin: auto;">
                 <img
                 src="./images/delete.png" alt="delete"
-                style="width: 22px; height: 22px;"
-                onclick="deleteNote(${note["id"]})">
+                style="width: 22px; height: 22px;">
             </a>
             `
         });
