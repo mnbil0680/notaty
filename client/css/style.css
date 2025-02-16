@@ -77,6 +77,10 @@ th {
   text-align: left;
   padding: 8px;
 }
+.edit-and-delete {
+  display: flex;
+  justify-content: space-evenly;
+}
 
 tr:nth-child(even) {
   background-color: #cecdcd;
