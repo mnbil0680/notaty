@@ -1,11 +1,14 @@
 // this Js file to handel notes.html
 
-function updateNotesTable(){
+function updateNotesTable(noteTitle){
     let table = document.getElementById("notes-table");
-    getAllNotes().then(data => {
+    // remove all rows except the header
+    while(table.rows.length > 1){
+        table.deleteRow(1);
+    }
+    getAllNotes(noteTitle).then(data => {
         data.forEach(note => {
             let row = table.insertRow(1);
-
             let cell1 = row.insertCell(0);
             let cell2 = row.insertCell(1);
             let cell3 = row.insertCell(2);
@@ -36,10 +39,13 @@ function updateNotesTable(){
                 onclick="deleteNote(${note["id"]})">
             </a>
             `
-
-            
-
         });
     });
+
+}
+
+function searchNotes(){
+    const searchTitle = document.getElementById("searchInput").value;
+    updateNotesTable(searchTitle);
 
 }
