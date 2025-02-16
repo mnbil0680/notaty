@@ -31,10 +31,13 @@ function updateNotesTable(noteTitle){
             </a>
             <a href="#"
             style= "text-decoration: none;
-            margin: auto;">
+            margin: auto;"
+            onclick="confirmDeleteNote('${note["_id"]}')">
+
                 <img
                 src="./images/delete.png" alt="delete"
                 style="width: 22px; height: 22px;">
+
             </a>
             `
         });
@@ -45,5 +48,20 @@ function updateNotesTable(noteTitle){
 function searchNotes(){
     const searchTitle = document.getElementById("searchInput").value;
     updateNotesTable(searchTitle);
+
+}
+
+function confirmDeleteNote(noteId){
+    let action = confirm("Are you sure you want to delete this note?");
+    if(action ==true){
+        deleteNote(noteId)
+        .then( () => {
+            updateNotesTable();
+        })
+        .catch( error =>{
+            alert("Error: Unable to delete note", error);
+        } );
+    }
+
 
 }
