@@ -31,7 +31,7 @@ async function getNoteById(noteID){
     const response =await fetch(`${baseUrl}/notes/${noteID}`,{
         method: "GET"
     });
-    return response;
+    return response.json();
 }
 
 async function getAllNotes(noteTitle){
@@ -40,5 +40,5 @@ async function getAllNotes(noteTitle){
         url += `/?title=${noteTitle}`;
     }
     const response = await fetch(url);
-    return response;
+    return response.json();
 }
