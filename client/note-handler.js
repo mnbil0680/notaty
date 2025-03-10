@@ -62,6 +62,4 @@ function confirmDeleteNote(noteId){
             alert("Error: Unable to delete note", error);
         } );
     }
-
-
 }
